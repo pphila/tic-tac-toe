@@ -1,10 +1,9 @@
-import './App.css';
 import React from "react";
-import TicTacToe from "./TicTacToe";
+import Board from "./Board";
 
 function App() {
   return (
-    <TicTacToe />
+    <Board />
   );
 }
 
