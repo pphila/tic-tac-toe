@@ -29,9 +29,9 @@ export default function Board({ xIsNext, squares, onPlay }) {
     status = "Next Player: " + (xIsNext ? "X" : "O");
   }
 
-  const handleRefreshClick = () => {
-    window.location.reload();
-  }
+  // const handleRefreshClick = () => {
+  //   window.location.reload();
+  // }
 
   return (
     <>
@@ -52,11 +52,6 @@ export default function Board({ xIsNext, squares, onPlay }) {
         <Square value={squares[8]} onSquareClick={()=> handleClick(8)} />
       </div>
       <br></br>
-      <div>
-        <button onClick={handleRefreshClick}>
-          Start Over
-        </button>
-      </div>
     </>
   )
 }
