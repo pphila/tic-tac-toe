@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Square from "./Square";
 import isWinner from "./Winner";
 
-export default function Board() {
-  const [xIsNext, setXIsNext] = useState(true);
-  const [squares, setSquares] = useState(Array(9).fill(null));
+export default function Board({ xIsNext, squares, onPlay }) {
+  // const [xIsNext, setXIsNext] = useState(true);
+  // const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    if(squares[i] || isWinner(squares)) {
+    if(isWinner(squares) || squares[i]) {
       return;
     }
 
@@ -18,8 +18,7 @@ export default function Board() {
     } else {
       nextSquares[i] = "O";
     }
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+    onPlay(nextSquares);
   }
 
   const winner = isWinner(squares);
@@ -28,6 +27,10 @@ export default function Board() {
     status = "Winner: " + winner;
   } else {
     status = "Next Player: " + (xIsNext ? "X" : "O");
+  }
+
+  const handleRefreshClick = () => {
+    window.location.reload();
   }
 
   return (
@@ -47,6 +50,12 @@ export default function Board() {
         <Square value={squares[6]} onSquareClick={()=> handleClick(6)} />
         <Square value={squares[7]} onSquareClick={()=> handleClick(7)} />
         <Square value={squares[8]} onSquareClick={()=> handleClick(8)} />
+      </div>
+      <br></br>
+      <div>
+        <button onClick={handleRefreshClick}>
+          Start Over
+        </button>
       </div>
     </>
   )
